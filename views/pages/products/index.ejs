@@ -8,40 +8,42 @@
 <body>
 
   <% include ../../partial/nav.ejs %>
-
-<div class="jumbotron text-center">
+  
   <div class="container">
-    <h3>Guilherme Malfatti | McFadyen</h3>
-    <p>Shopping Cart.</p>
-    <a type="button" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+    <div class="page-header customheader">
+        <h3>Guilherme Malfatti | McFadyen</h3>
+        <a type="button" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+        <h5>Ecommerce Products Display Layout</h2>        
+    </div>
+    <div class="row" data-bind="foreach: products">       
+          <div class="col-sm-3"  >
+            <article class="col-item">
+              <div class="photo">
+                <a href="#"> <img data-bind="attr:{src: image}" class="img-responsive" alt="Product Image" /> </a>
+              </div>
+              <div class="info">
+                <div class="row">
+                  <div class="price-details col-md-6">
+                    <h1 data-bind="text:  name"></h1>
+                    <span class="price-new" data-bind="text:  formatCurrency(price)"></span>
+                  </div>
+                </div>
+                <div class="separator clear-left">
+                  <p class="btn-add">
+                    <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm" data-bind='click: $root.addTocart'>Add to cart</a>
+                  </p>
+                  <p class="btn-details">
+                    <a href="#" data-bind='click: $root.todo' class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                    <a href="#" data-bind='click: $root.todo' class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-exchange"></i></a>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </article>
+          </div>
+    </div>
   </div>
-</div>
-<div class="container">
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col">price</th>
-          <th scope="col">clicks</th>
-        </tr>
-      </thead>
-      <tbody>
-            <% products.forEach(function(p) { %>
-            <tr>
-                <td><%= p.id %> <br>
-                    <button data-bind='click: registerClick, disable: hasClickedTooManyTimes'>Click me</button> 
-                </td>
-                <td><%= p.name %></td>
-                <td><%= p.price %></td>
-                <td><a data-bind='text: numberOfClicks'></a></td>
-            </tr>
-            <% }); %>
-      </tbody>
-    </table>
-  </div> <!-- row -->
-</div>
+
 
 
 </body>

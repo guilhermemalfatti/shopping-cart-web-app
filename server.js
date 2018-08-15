@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-const PORT = process.env.PORT || 2812
+const PORT = process.env.PORT || 8080
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.use(express.static(__dirname));
 
+app.get('/', function(req, res) {
+    res.render('pages/products/index');
+})
   
 app.get('/products', function(req, res) { 
     var request = require('request')
@@ -29,10 +32,11 @@ app.get('/products', function(req, res) {
     });
 
     body.on('update', function () {
-        res.render('pages/products/index', {
-            products: body.data,
-        });
+        if(body.data != null)
+            res.status(200).send(body.data)
+        else//TODO
+        res.status(500).send({})
     });
 })
 
-  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
