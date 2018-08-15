@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../../partial/header.ejs %>
+  <script type="text/javascript" src="static/js/products.js"></script>  
+</head>
+
+<body>
+
+  <% include ../../partial/nav.ejs %>
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h3>Guilherme Malfatti | McFadyen</h3>
+    <p>Shopping Cart.</p>
+    <a type="button" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">price</th>
+          <th scope="col">clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+            <% products.forEach(function(p) { %>
+            <tr>
+                <td><%= p.id %> <br>
+                    <button data-bind='click: registerClick, disable: hasClickedTooManyTimes'>Click me</button> 
+                </td>
+                <td><%= p.name %></td>
+                <td><%= p.price %></td>
+                <td><a data-bind='text: numberOfClicks'></a></td>
+            </tr>
+            <% }); %>
+      </tbody>
+    </table>
+  </div> <!-- row -->
+</div>
+
+
+</body>
+</html>
