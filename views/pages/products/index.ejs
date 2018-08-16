@@ -10,13 +10,9 @@
   <% include ../../partial/nav.ejs %>
   
   <div class="container">
-    <div class="page-header customheader">
-        <h3>Guilherme Malfatti | McFadyen</h3>
-        <a type="button" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-        <h5>Ecommerce Products Display Layout</h2>        
-    </div>
+      <% include ../../partial/pageHeader.ejs %>
     <div class="row" data-bind="foreach: products">       
-          <div class="col-sm-3"  >
+          <div class="col-sm-3">
             <article class="col-item">
               <div class="photo">
                 <a href="#"> <img data-bind="attr:{src: image}" class="img-responsive" alt="Product Image" /> </a>
