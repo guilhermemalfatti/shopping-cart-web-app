@@ -1,5 +1,4 @@
 var ListViewModel = function() {
-    this.isVisible = false;
     this.todo = function() {
         alert("TODO");
     };
@@ -23,11 +22,17 @@ var ListViewModel = function() {
 
     var self = this;
     this.products = ko.observableArray();
+    this.notFoundProducts = ko.observable();
  
     this.refresh = function() {
-        //TODO show loading when no visible
-        return $.getJSON("/products", function(items) {        
-            self.products(items);
+        //TODO show loading when not visible
+        return $.getJSON("/products", function(resp) {        
+            if(resp.length > 0)
+                self.products(resp);
+            else{
+                self.products([])
+                self.notFoundProducts(true);
+            }
         });
     }
  
