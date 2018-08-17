@@ -1,9 +1,11 @@
 var ListViewModel = function() {
+    this.isLoading = ko.observable(true)
     this.todo = function() {
         alert("TODO");
     };
     
     this.addTocart = function(item) {
+        self.isLoading(true);
         $.ajax({
             url: "addItem",
             type: "POST",
@@ -12,11 +14,9 @@ var ListViewModel = function() {
                 id: item.id
             })
         }).done((resp)=>{
+            self.isLoading(false);
             if(resp.error)
                 alert('Product not added')
-            else{
-                alert('Product added')
-            }
         })
     }
 
@@ -25,8 +25,9 @@ var ListViewModel = function() {
     this.notFoundProducts = ko.observable();
  
     this.refresh = function() {
-        //TODO show loading when not visible
-        return $.getJSON("/products", function(resp) {        
+        self.isLoading(true);
+        return $.getJSON("/products", function(resp) {    
+            self.isLoading(false);    
             if(resp.length > 0)
                 self.products(resp);
             else{

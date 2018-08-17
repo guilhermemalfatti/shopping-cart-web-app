@@ -3,6 +3,7 @@ var CartViewModel = function() {
     this.cartAmount = ko.observable(0)
     this.products = ko.observableArray()
     this.notFoundProducts = ko.observable()
+    this.isLoading = ko.observable(true)
 
     this.formatCommerceId = function(id){
         return "Commerce ID: " + id
@@ -19,8 +20,13 @@ var CartViewModel = function() {
     this.formatTotalCurrency = function(value){
         return "Total R$ " + value
     }
+    
+    this.todo = function() {
+        alert("TODO");
+    };
 
     this.removeItem = function(item){
+        self.isLoading(true);
         $.ajax({
             url: "/removeItem",
             type: "POST",
@@ -29,20 +35,20 @@ var CartViewModel = function() {
                 id: item.id
             })
         }).done((resp)=>{
+            self.isLoading(false);
             if(resp.error)
                 alert('Product not removed')
             else{
-                //self.refresh();
+                self.refresh();
             }            
         })
     }
 
-    this.todo = function() {
-        alert("TODO");
-    };
  
     this.refresh = function() {
+        this.isLoading(true);
         return $.getJSON("/shoppingCartItens", function(resp) {
+            self.isLoading(false);
             if(resp.items != null && resp.items.length > 0){
                 self.cartAmount(resp.amount)
                 self.products(resp.items)

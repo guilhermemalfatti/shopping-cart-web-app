@@ -33,7 +33,7 @@
                         </td>
                         <td data-th="Price"></td>
                         <td data-th="Quantity">
-                            <input type="number" class="form-control text-center"  data-bind="value: quantity">
+                            <a  class=" text-center"  data-bind="text: quantity">
                         </td>
                         <td data-th="Subtotal" class="text-center" data-bind="text: $root.formatCurrency(amount)"></td>
                         <td class="actions" data-th="">
@@ -53,5 +53,6 @@
                 </tfoot>
             </table>
         </div>
+        <div data-bind="visible: isLoading" class="loading"></div>
     </body>
 </html>

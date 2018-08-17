@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var request = require('request')
 var request = request.defaults({jar: true})
 var host = "https://shopping-cart-api-mcf.herokuapp.com";
-var host = "http://localhost:8081";
+//var host = "http://localhost:8081";
 const PORT = process.env.PORT || 8080
 
 app.set('views', path.join(__dirname, 'views'))
