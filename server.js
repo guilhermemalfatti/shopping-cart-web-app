@@ -18,11 +18,11 @@ app.get('/', function(req, res) {
 })
 
 app.get('/shoppingCart', function(req, res) {
-    res.render('pages/shoppingCart/index');
+    res.render('pages/shoppingcart/index');
 })
 
 
-app.get('/shoppingcartItens', function(req, res) {
+app.get('/shoppingCartItens', function(req, res) {
     var EventEmitter = require("events").EventEmitter;
     var body = new EventEmitter();
 
