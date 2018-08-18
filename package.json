@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Shopping cart front end",
   "main": "server.js",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
     "start": "node server.js"
   },
   "author": "Guilherme Meneguzzi Malfatti <guimalfatti76@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "https://github.com/guilhermemalfatti/shopping-cart-web-app"
   },
   "keywords": [
     "node",
