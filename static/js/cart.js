@@ -27,36 +27,47 @@ var CartViewModel = function() {
 
     this.removeItem = function(item){
         self.isLoading(true);
+
         $.ajax({
-            url: "/removeItem",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                id: item.id
-            })
-        }).done((resp)=>{
-            self.isLoading(false);
-            if(resp.error)
-                alert('Product not removed')
-            else{
-                self.refresh();
-            }            
+            url: "https://shopping-cart-api-mcf.herokuapp.com/shoppingcart/items/" + item.id,
+            type: "DELETE", // <- Change here
+            contentType: "application/json",xhrFields: {
+                withCredentials: true
+             },
+            success: function(resp) {
+                self.isLoading(false);
+                if(resp.error)
+                    alert('Product not removed')
+                else{
+                    self.refresh();
+                }  
+            }
         })
+
+        
     }
 
- 
+    
     this.refresh = function() {
         this.isLoading(true);
-        return $.getJSON("/shoppingCartItens", function(resp) {
+        $.ajax({
+            url: "https://shopping-cart-api-mcf.herokuapp.com/shoppingcart",
+            xhrFields: {
+               withCredentials: true
+            }
+         }).done(function(resp){
             self.isLoading(false);
+            resp = JSON.parse(resp);
             if(resp.items != null && resp.items.length > 0){
                 self.cartAmount(resp.amount)
                 self.products(resp.items)
             }else{
-                self.products([])                
+                self.products([])     
+                self.cartAmount(0)           
                 self.notFoundProducts(true)
             }
-        });
+         });
+
     }
  
     this.refresh();

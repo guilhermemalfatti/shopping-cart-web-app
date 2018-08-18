@@ -7,12 +7,10 @@ var ListViewModel = function() {
     this.addTocart = function(item) {
         self.isLoading(true);
         $.ajax({
-            url: "addItem",
+            url: "https://shopping-cart-api-mcf.herokuapp.com/shoppingcart/items?product_id="+item.id+"&quantity=1",
             type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                id: item.id
-            })
+            dataType: 'json',
+            xhrFields: { withCredentials: true }
         }).done((resp)=>{
             self.isLoading(false);
             if(resp.error)
@@ -26,7 +24,7 @@ var ListViewModel = function() {
  
     this.refresh = function() {
         self.isLoading(true);
-        return $.getJSON("/products", function(resp) {    
+        return $.getJSON("https://shopping-cart-api-mcf.herokuapp.com/products", function(resp) {    
             self.isLoading(false);    
             if(resp.length > 0)
                 self.products(resp);
