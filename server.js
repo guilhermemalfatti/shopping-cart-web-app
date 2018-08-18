@@ -22,7 +22,7 @@ app.get('/shoppingCart', function(req, res) {
 })
 
 
-app.get('/shoppingCartItens', function(req, res) {
+app.get('/shoppingcartItens', function(req, res) {
     var EventEmitter = require("events").EventEmitter;
     var body = new EventEmitter();
 
