@@ -2,7 +2,7 @@
     "name": "Shopping cart",
     "description": "Shopping cart web app",
     "repository": "https://github.com/guilhermemalfatti/shopping-cart-web-app",
-    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+    "logo": "https://cdn.jsdelivr.net/gh/heroku/node-js-getting-started/public/node.svg",
     "keywords": ["cart", "shopping"],
     "image": "heroku/nodejs"
   }
